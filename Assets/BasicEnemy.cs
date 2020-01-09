@@ -8,7 +8,8 @@ public class BasicEnemy : Enemy
     void Start()
     {
         maxHealth = 20;
-        currentHealth = maxHealth;        
+        currentHealth = maxHealth;
+        contactDamage = 1;
     }
 
     // Update is called once per frame
@@ -19,5 +20,20 @@ public class BasicEnemy : Enemy
             Destroy(gameObject);
         }
 
+    }
+
+    public override int GetContactDamage()
+    {
+        return contactDamage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("Collision detected");
+        PlayerController player = collider.GetComponent<PlayerController>();
+        if (player)
+        {
+            player.currentHealth -= GetContactDamage();
+        }
     }
 }

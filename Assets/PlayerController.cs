@@ -2,14 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
 
-    public int maxHealth;
-    int currentHealth;
+    public int maxHealth;    
+
+    public Text healthDisplay;
+
+    public int currentHealth;
 
     bool attacking;
 
@@ -23,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         attacking = false;
         myCollider = GetComponent<BoxCollider2D>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -30,6 +35,12 @@ public class PlayerController : MonoBehaviour
     {
         HandleInput();
         HandleState();
+        HandleUI();
+    }
+
+    void HandleUI()
+    {
+        healthDisplay.text = "HP: " + currentHealth;
     }
 
     void HandleInput()
@@ -64,4 +75,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    
 }

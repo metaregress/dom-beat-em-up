@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     public int maxHealth;
     public int currentHealth;
+    public int contactDamage;
 
     // Use this for initialization
     void Start()
@@ -17,4 +18,6 @@ public class Enemy : MonoBehaviour
     {
 
     }
+
+    abstract public int GetContactDamage();
 }
